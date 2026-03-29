@@ -76,3 +76,10 @@ Send a POST request to /predict with the following JSON:
         "pct_change_1M": 0.05
     }
     ```
+
+Output: 
+    ```json
+    {
+        "predicted_passengers": 4679611
+    }
+    ```
