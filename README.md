@@ -64,6 +64,7 @@ Ensure you have **Docker** and **Docker Compose** installed.
 
 ## API Example (Inference)
 Send a POST request to /predict with the following JSON:
+
     ```json
     {
         "month": 7,
