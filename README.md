@@ -77,7 +77,8 @@ Send a POST request to /predict with the following JSON:
     }
     ```
 
-Output: 
+Output:
+
     ```json
     {
         "predicted_passengers": 4679611
