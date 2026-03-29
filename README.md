@@ -74,3 +74,4 @@ Send a POST request to /predict with the following JSON:
         "rolling_mean_3M": 4300000,
         "pct_change_1M": 0.05
     }
+    ```
