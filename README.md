@@ -50,7 +50,7 @@ Ensure you have **Docker** and **Docker Compose** installed.
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/mapi-developer/Passenger-Demand-Forecasting.git](https://github.com/mapi-developer/Passenger-Demand-Forecasting.git)
+   git clone https://github.com/mapi-developer/Passenger-Demand-Forecasting.git
    cd passenger-demand-forecast
 
 2. **Launch the entire stack:**
