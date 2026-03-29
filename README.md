@@ -1,34 +1,75 @@
-# ✈️ Airline Passenger Demand Forecasting
+# Airline Passenger Demand Forecasting System
 
-An end-to-end machine learning pipeline and REST API for predicting airline passenger traffic. This project leverages multivariate time-series data to forecast regional and airline-specific demand, aiding in network planning and route optimization.
+An end-to-end Machine Learning solution for long-term passenger traffic prediction. Developed with a focus on airline industry standards, specifically targeting high-precision forecasting for carriers like **Lufthansa**.
 
-## 🎯 Business Objective
-Accurate passenger demand forecasting is critical for airlines to optimize fleet allocation, manage crew schedules, and maximize route profitability. This project demonstrates a production-ready approach to predicting monthly passenger volumes using historical traffic data, temporal features, and machine learning.
+## Key Achievements
+* **High Accuracy:** Achieved a **3.46% MAPE** on a 24-month recursive backtest (blind forecast).
+* **Production-Ready:** Containerized architecture using Docker & Docker Compose.
+* **Scalable Backend:** REST API built with FastAPI, ready for integration with frontend dashboards.
 
-## 📊 Dataset
-This project uses the **San Francisco International Airport (SFO) Monthly Passenger Traffic** dataset. 
-* **Granularity:** Monthly
-* **Features:** Operating Airline, GEO Region (Domestic/International), Activity Type (Enplaned/Deplaned), and Price Category.
-* **Complexity:** The dataset requires careful ETL handling as passenger counts are additive across multiple categorical dimensions.
+---
 
-## 🛠️ Tech Stack
-* **Data Engineering:** `pandas`, `SQLAlchemy`, `PostgreSQL` (Data ingestion & transformation)
-* **Machine Learning:** `scikit-learn`, `XGBoost`, `statsmodels` (SARIMA baseline)
-* **Backend API:** `FastAPI`, `Uvicorn`, `Pydantic`
-* **Deployment:** `Docker`, Google Cloud Platform (GCP)
+## System Architecture
+The project follows a modern MLOps approach, separating data storage, model logic, and the serving layer.
 
-## 📁 Project Structure
+1.  **Database:** PostgreSQL (running in Docker) stores historical SFO passenger traffic.
+2.  **ML Engine:** XGBoost regressor with custom recursive forecasting logic.
+3.  **API Layer:** FastAPI service providing high-performance inference endpoints.
 
-```text
-passenger-demand-forecast/
-├── data/                      # Local data storage (raw and processed)
-├── notebooks/                 # Jupyter notebooks for EDA and model prototyping
-├── src/                       
-│   ├── api/                   # FastAPI application (main.py, routes, schemas)
-│   ├── db/                    # PostgreSQL configuration and SQLAlchemy models
-│   ├── etl/                   # Data extraction and transformation pipelines
-│   └── ml/                    # Machine learning training and inference scripts
-├── models/                    # Saved model artifacts (.joblib)
-├── tests/                     # Pytest unit tests
-├── Dockerfile                 # Containerization setup
-└── requirements.txt           # Python dependencies
+
+
+---
+
+## Tech Stack
+* **Languages:** Python 3.10
+* **ML Libraries:** XGBoost, Scikit-learn, Pandas, Statsmodels (SARIMA for baseline)
+* **Database:** PostgreSQL + SQLAlchemy
+* **API:** FastAPI + Pydantic + Uvicorn
+* **DevOps:** Docker, Docker Compose
+
+---
+
+## Feature Engineering
+To overcome the limitations of decision trees in time-series forecasting, the system generates:
+* **Temporal Features:** Month, Quarter, Year (to capture seasonality).
+* **Lags:** 1-month, 3-month, and **12-month** (critical for airline summer/winter cycles).
+* **Moving Averages:** 3-month and 6-month rolling windows to capture trends.
+
+---
+
+## Model Evaluation (Backtesting)
+The model was evaluated using a **Recursive Backtest** starting from Jan 2023 to prove long-term stability:
+* **MAE:** ~151,976 passengers
+* **RMSE:** ~193,394 passengers
+* **MAPE:** **3.46%** (Average error over 2 years)
+
+---
+
+## Installation & Running
+Ensure you have **Docker** and **Docker Compose** installed.
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/yourusername/passenger-demand-forecast.git](https://github.com/yourusername/passenger-demand-forecast.git)
+   cd passenger-demand-forecast
+
+2. **Launch the entire stack:**
+    ```bash
+    docker-compose up --build -d
+
+3. **Test the API:**
+    The API will be available at http://localhost:8000. 
+    You can access the interactive Swagger documentation at http://localhost:8000/docs.
+
+## API Example (Inference)
+Send a POST request to /predict with the following JSON:
+    ```json
+    {
+        "month": 7,
+        "quarter": 3,
+        "year": 2026,
+        "lag_1M": 4500000,
+        "lag_12M": 4450000,
+        "rolling_mean_3M": 4300000,
+        "pct_change_1M": 0.05
+    }
