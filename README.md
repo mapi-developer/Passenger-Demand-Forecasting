@@ -65,7 +65,6 @@ Ensure you have **Docker** and **Docker Compose** installed.
 ## API Example (Inference)
 Send a POST request to /predict with the following JSON:
 
-    ```json
     {
         "month": 7,
         "quarter": 3,
@@ -75,12 +74,9 @@ Send a POST request to /predict with the following JSON:
         "rolling_mean_3M": 4300000,
         "pct_change_1M": 0.05
     }
-    ```
 
 Output:
 
-    ```json
     {
         "predicted_passengers": 4679611
     }
-    ```
