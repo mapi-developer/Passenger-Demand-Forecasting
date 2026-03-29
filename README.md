@@ -58,6 +58,7 @@ Ensure you have **Docker** and **Docker Compose** installed.
     docker-compose up --build -d
 
 3. **Test the API:**
+
     The API will be available at http://localhost:8000. 
     You can access the interactive Swagger documentation at http://localhost:8000/docs.
 
