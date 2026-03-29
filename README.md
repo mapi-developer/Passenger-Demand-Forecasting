@@ -13,7 +13,7 @@ This project uses the **San Francisco International Airport (SFO) Monthly Passen
 
 ## 🛠️ Tech Stack
 * **Data Engineering:** `pandas`, `SQLAlchemy`, `PostgreSQL` (Data ingestion & transformation)
-* **Machine Learning:** `scikit-learn`, `LightGBM` / `XGBoost`, `statsmodels` (SARIMA baseline)
+* **Machine Learning:** `scikit-learn`, `XGBoost`, `statsmodels` (SARIMA baseline)
 * **Backend API:** `FastAPI`, `Uvicorn`, `Pydantic`
 * **Deployment:** `Docker`, Google Cloud Platform (GCP)
 
