@@ -60,6 +60,7 @@ Ensure you have **Docker** and **Docker Compose** installed.
 3. **Test the API:**
 
     The API will be available at http://localhost:8000. 
+    
     You can access the interactive Swagger documentation at http://localhost:8000/docs.
 
 ## API Example (Inference)
@@ -75,7 +76,6 @@ Send a POST request to /predict with the following JSON:
         "rolling_mean_3M": 4300000,
         "pct_change_1M": 0.05
     }
-    ```
 
 Output:
 
@@ -83,4 +83,3 @@ Output:
     {
         "predicted_passengers": 4679611
     }
-    ```
